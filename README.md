@@ -18,7 +18,7 @@
 * Detect nuclei with Cellpose
 * Find DNA/PML foci with Stardist
 * For each nucleus, count foci number, volume and intensity
-* Compute diffus in nucleus ie nucleus intensity in foci channel after foci mask oui zero
+* For each nucleus, compute also diffuse intensity (ie. nucleus intensity in DNA/PML channel after setting intensity of detected DNA/PML foci to zero)
 
 ### Dependencies
 
