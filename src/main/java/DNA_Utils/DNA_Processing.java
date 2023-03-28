@@ -32,7 +32,6 @@ import loci.plugins.util.ImageProcessorReader;
 import mcib3d.geom2.BoundingBox;
 import mcib3d.geom2.Object3DInt;
 import mcib3d.geom2.Objects3DIntPopulation;
-import mcib3d.geom2.measurements.Measure2Colocalisation;
 import mcib3d.geom2.measurements.MeasureCentroid;
 import mcib3d.geom2.measurements.MeasureIntensity;
 import mcib3d.geom2.measurements.MeasureVolume;
@@ -405,20 +404,17 @@ public class DNA_Processing {
         // Run CellPose
         CellposeSegmentImgPlusAdvanced cellpose = new CellposeSegmentImgPlusAdvanced(settings, imgResized);
         ImagePlus imgOut = cellpose.run();
-        ImagePlus ImgNuc = (reSize) ? imgOut.resize(img.getWidth(), img.getHeight(), "none") : imgOut;
-        ImgNuc.setCalibration(cal);
-        
-        flush_close(imgOut);
+        ImagePlus imgNuc = (reSize) ? imgOut.resize(img.getWidth(), img.getHeight(), "none") : imgOut;
+        imgNuc.setCalibration(cal);
         // Get cells as a population of objects
-        ImageHandler imgH = ImageHandler.wrap(ImgNuc);
-        Objects3DIntPopulation pop = new Objects3DIntPopulation(imgH);
+        Objects3DIntPopulation pop = new Objects3DIntPopulation(ImageHandler.wrap(imgNuc));
         System.out.println(pop.getNbObjects() + " CellPose detections");
+        flush_close(imgNuc);
+        flush_close(imgOut);
         // Remove cell with only one Z
         zFilterPop(pop);
         // Filter cells by size
         popFilterSize(pop, minNuc, maxNuc);
-        flush_close(imgOut);
-        imgH.closeImagePlus();
         return(pop);
     } 
     
@@ -500,7 +496,7 @@ public class DNA_Processing {
             fontSize *= 3;
         for (Object3DInt obj : pop.getObjects3DInt()) {
             BoundingBox bb = obj.getBoundingBox();
-            int z = bb.zmin + 1;
+            int z = bb.zmax - bb.zmin;
             int x = bb.xmin;
             int y = bb.ymin;
             img.setSlice(z);
@@ -599,7 +595,7 @@ public class DNA_Processing {
         ImageHandler imgFociObjects = imgNucObjects.duplicate();
         for (Object3DInt obj : nucPop.getObjects3DInt())
             obj.drawObject(imgNucObjects, 255);
-        labelObject(nucPop, imgNucObjects.getImagePlus(), 60);
+        labelObject(nucPop, imgNucObjects.getImagePlus(), 30);
         for (Object3DInt obj : fociPop.getObjects3DInt())
             obj.drawObject(imgFociObjects, 255);
         ImagePlus[] imgColors = {imgFociObjects.getImagePlus(), null, imgNucObjects.getImagePlus()};
