@@ -85,9 +85,9 @@ public class DNA_Processing {
     // Cellpose
     public int cellPoseDiameter = 50;
     public String cellPoseModel = "cyto2";
-    private final String cellposeEnvDirPath = (IJ.isLinux()) ? "/opt/miniconda3/envs/cellpose" : System.getProperty("user.home")+"\\miniconda3\\envs\\CellPose";
+    private String cellposeEnvDirPath = IJ.isWindows()? System.getProperty("user.home")+"\\miniconda3\\envs\\CellPose" : "/opt/miniconda3/envs/cellpose";
+    public final String cellposeModelPath = IJ.isWindows()? System.getProperty("user.home")+"\\.cellpose\\models\\" : "";
     private double stitchThreshold = 0.25;
-    public double distMax = 1.5;
     public final ImageIcon icon = new ImageIcon(this.getClass().getResource("/Orion_icon.png"));
     
     
