@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DNA_PML_StardistOrion;
+package DNA_PML_Morph_Tools.StardistOrion;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,13 +1,11 @@
-package DNA_Utils;
+package DNA_PML_Morph_Tools;
 
-
-import Cellpose.CellposeSegmentImgPlusAdvanced;
-import Cellpose.CellposeTaskSettings;
-import DNA_PML_StardistOrion.StarDist2D;
+import DNA_PML_Morph_Tools.Cellpose.CellposeSegmentImgPlusAdvanced;
+import DNA_PML_Morph_Tools.Cellpose.CellposeTaskSettings;
+import DNA_PML_Morph_Tools.StardistOrion.StarDist2D;
 import fiji.util.gui.GenericDialogPlus;
 import ij.IJ;
 import ij.ImagePlus;
-import ij.gui.WaitForUserDialog;
 import ij.io.FileSaver;
 import ij.measure.Calibration;
 import ij.plugin.Duplicator;
@@ -53,7 +51,7 @@ import org.scijava.util.ArrayUtils;
  *
  * @author phm
  */
-public class DNA_Processing {
+public class Tools {
     
     // DNA filter size
     private double minDNA = 0.004;

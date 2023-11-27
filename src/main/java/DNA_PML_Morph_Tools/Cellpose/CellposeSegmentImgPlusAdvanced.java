@@ -1,4 +1,4 @@
-package Cellpose;
+package DNA_PML_Morph_Tools.Cellpose;
 
 import ij.IJ;
 import ij.ImagePlus;

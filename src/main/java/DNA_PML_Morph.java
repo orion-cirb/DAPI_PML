@@ -5,12 +5,7 @@
  */
 
 
-/* 
-* Images on local machine
-*/
-
-
-import DNA_Utils.DNA_Processing;
+import DNA_PML_Morph_Tools.Tools;
 import ij.*;
 import ij.measure.Calibration;
 import ij.plugin.PlugIn;
@@ -51,13 +46,8 @@ public class DNA_PML_Morph implements PlugIn {
     private String[] chsName;
     public BufferedWriter outPutDNAResultsGlobal; 
     
-    DNA_Processing proc = new DNA_Processing();
+    Tools proc = new Tools();
 
-    /**
-     * 
-     * @param arg
-     */
-    @Override
     public void run(String arg) {
         
         final boolean canceled = false;

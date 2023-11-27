@@ -7,9 +7,9 @@
         
 	<groupId>cirb</groupId>
 	<artifactId>DNA_PML_Morph</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
         <packaging>jar</packaging>
-	<name>plugins/CIRB/DNA_PML_Morph.jar</name>
+	<name>CIRB/DNA_PML_Morph</name>
 	<description>Analyze DNA and PML in nucleus
         </description>
 
@@ -31,7 +31,7 @@
 	<properties>
             <imagej.app.directory>/opt/Fiji.app/</imagej.app.directory>
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <main-class>DNA_PLM_Morph</main-class>
+            <main-class>DNA_PLM_Morph.jar</main-class>
 	</properties>
 
 	<dependencies>

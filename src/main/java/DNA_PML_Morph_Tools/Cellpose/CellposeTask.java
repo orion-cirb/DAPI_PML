@@ -1,6 +1,5 @@
-package Cellpose;
+package DNA_PML_Morph_Tools.Cellpose;
 
-import Cellpose.CellposeTaskSettings;
 import java.util.ArrayList;
 
 public class CellposeTask {

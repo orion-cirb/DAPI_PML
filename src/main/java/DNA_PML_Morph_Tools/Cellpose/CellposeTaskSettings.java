@@ -1,4 +1,4 @@
-package Cellpose;
+package DNA_PML_Morph_Tools.Cellpose;
 
 
 public class CellposeTaskSettings {
