@@ -28,7 +28,6 @@ import mcib3d.geom2.Object3DInt;
 import mcib3d.geom2.Objects3DIntPopulation;
 import mcib3d.geom2.Objects3DIntPopulationComputation;
 import mcib3d.geom2.measurements.MeasureCentroid;
-import mcib3d.geom2.measurements.MeasureIntensity;
 import mcib3d.image3d.ImageHandler;
 import mcib3d.image3d.ImageInt;
 import mcib3d.image3d.ImageLabeller;
@@ -43,7 +42,7 @@ import org.apache.commons.io.FilenameUtils;
 public class Tools {
     
     public final ImageIcon icon = new ImageIcon(this.getClass().getResource("/Orion_icon.png"));
-    private final String helpUrl = "https://github.com/orion-cirb/DAPI_PML";
+    private final String helpUrl = "https://github.com/orion-cirb/DAPI_PML/tree/version2";
     
     private CLIJ2 clij2 = CLIJ2.getInstance();
     
