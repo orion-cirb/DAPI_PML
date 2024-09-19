@@ -1,192 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-		http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
         
-	<groupId>cirb</groupId>
-	<artifactId>DNA_PML_Morph</artifactId>
-	<version>1.0.0</version>
-        <packaging>jar</packaging>
-	<name>CIRB/DNA_PML_Morph</name>
-	<description>Analyze DNA and PML in nucleus
-        </description>
+    <parent>
+        <groupId>org.scijava</groupId>
+        <artifactId>pom-scijava</artifactId>
+        <version>37.0.0</version>
+        <relativePath />
+    </parent>
+        
+    <groupId>fr.cirb.orion</groupId>
+    <artifactId>DAPI_PML</artifactId>
+    <version>2.0.0</version>
+    <packaging>jar</packaging>
+    
+    <name>DAPI_PML</name>
+    <description>
+        Detect DAPI nuclei with Cellpose
+        Segment PML foci with DoG filtering + automatic thresholding
+        Compute background noise as the median intensity of pixels outside nuclei
+        For each nucleus, provide:
+            - PML foci number, area and background-corrected intensity
+            - PML diffuse signal (aka outside foci) background-corrected intensity
+    </description>
+    <url>https://github.com/orion-cirb/DAPI_PML</url>
+    <inceptionYear>2023</inceptionYear>
+    <organization>
+        <name>orion-cirb</name>
+        <url>http://orion-cirb.fr/</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>None</name>
+        </license>
+    </licenses>
 
-	<developers>
-            <developer>
-                <id>phm</id>
-                <name>Philippe Mailly</name>
-                <email>philippe.mailly@college-de-france.fr</email>
-                <url></url>
-                <organization>CIRB, Collège de France</organization>
-                <roles>
-                        <role>developer</role>
-                </roles>
-                <timezone>-1</timezone>
-            </developer>
-	</developers>
-
-
-	<properties>
-            <imagej.app.directory>/opt/Fiji.app/</imagej.app.directory>
-            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <main-class>DNA_PLM_Morph.jar</main-class>
-	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij</artifactId>
-                        <version>1.54a</version>
-                        <type>jar</type>
-		</dependency>
-                <dependency>
-                    <groupId>net.imglib2</groupId>
-                    <artifactId>imglib2-ij</artifactId>
-                    <version>2.0.1-SNAPSHOT</version>
-                    <type>jar</type>
-                </dependency>
-                <dependency>
-                    <groupId>net.imagej</groupId>
-                    <artifactId>imagej-common</artifactId>
-                    <version>2.0.4-SNAPSHOT</version>
-                    <type>jar</type>
-                </dependency>
-                <dependency>
-                    <groupId>de.csbdresden</groupId>
-                    <artifactId>csbdeep</artifactId>
-                    <version>0.6.1-SNAPSHOT</version>
-                </dependency>
-                <dependency>
-                        <groupId>ome</groupId>
-                        <artifactId>bioformats_package</artifactId>
-                        <version>6.11.0</version>
-                </dependency>
-                <dependency>
-			<groupId>mcib</groupId>
-			<artifactId>mcib3d-core</artifactId>
-			<version>4.0.93</version>
-                        <type>jar</type>
-                </dependency>
-                <dependency>
-                        <groupId>ome</groupId>
-                        <artifactId>formats-common</artifactId>
-                        <version>5.2.5-SNAPSHOT</version>
-                        <type>jar</type>
-                 </dependency>
-                 <dependency>
-                        <groupId>ome</groupId>
-                        <artifactId>formats-api</artifactId>
-                        <version>6.12.1-SNAPSHOT</version>
-                        <type>jar</type>
-                 </dependency>
-                <dependency>
-                    <groupId>org.hsqldb</groupId>
-                    <artifactId>hsqldb</artifactId>
-                    <version>2.4.0</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                      <groupId>mpicbg</groupId>
-                      <artifactId>mpicbg</artifactId>
-                      <version>20120621</version>
-                      <type>jar</type>
-                </dependency>
-                <dependency>
-                      <groupId>sc.fiji</groupId>
-                      <artifactId>fiji-lib</artifactId>
-                      <version>2.1.4-SNAPSHOT</version>
-                      <type>jar</type>
-                </dependency>
-                
-                <dependency>
-                      <groupId>net.haesleinhuepf</groupId>
-                      <artifactId>clij-clearcl</artifactId>
-                      <version>2.5.0.1</version>
-                      <type>jar</type>
-                </dependency>
-                <dependency>
-                      <groupId>net.haesleinhuepf</groupId>
-                      <artifactId>clij2_</artifactId>
-                      <version>2.5.3.1</version>
-                      <type>jar</type>
-                </dependency>
-                <dependency>
-                      <groupId>net.haesleinhuepf</groupId>
-                      <artifactId>clij-advanced-filters_</artifactId>
-                      <version>0.21.5</version>
-                      <type>jar</type>
-                </dependency>
-	 <dependency>
-	  <groupId>sc.fiji</groupId>
-	  <artifactId>Calculator_Plus</artifactId>
-	  <version>2.0.2-SNAPSHOT</version>
-	  <type>jar</type>
-	 </dependency>
-	 <dependency>
-	  <groupId>net.imglib2</groupId>
-	  <artifactId>imglib2</artifactId>
-	  <version>6.1.1-SNAPSHOT</version>
-	  <type>jar</type>
-	 </dependency>
-	 <dependency>
-	  <groupId>de.lighti</groupId>
-	  <artifactId>Clipper</artifactId>
-	  <version>6.4.2</version>
-	  <type>jar</type>
-	 </dependency>
-	</dependencies>
-        <repositories>
-            <repository>
-		<id>imagej.public</id>
-		<url>https://maven.imagej.net/content/groups/public</url>
-            </repository>
-            <repository>
-                <id>ome</id>
-                <name>Bio-Formats Repo</name>
-                <url>https://artifacts.openmicroscopy.org/artifactory/maven</url>
-            </repository>
-            <repository>
-                <id>jitpack.io</id>
-                <url>https://jitpack.io</url>
-            </repository>
-            <repository>
-                <id>clij</id>
-                <url>http://dl.bintray.com/haesleinhuepf/clij</url>
-            </repository>
-        </repositories>
-	<build>
-            <plugins>
-		<plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
-                    <configuration>
-                        <showDeprecation>true</showDeprecation>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-		</plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>copytoplugins</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>run</goal>
-                            </goals>
-                            <configuration>
-                                <tasks>
-                                    <copy todir="${imagej.app.directory}/plugins/CIRB" file="target/${project.build.finalName}.jar"/>
-                                </tasks>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-	</build>
+    <developers>
+        <developer>
+            <id>hm</id>
+            <name>Héloïse Monnet</name>
+            <email>heloise.monnet@college-de-france.fr</email>
+            <organization>CIRB, Collège de France</organization>
+            <roles>
+                    <role>developer</role>
+            </roles>
+      </developer>
+    </developers>
+    
+    <contributors>
+        <contributor>
+            <name>Philippe Mailly</name>
+            <email>philippe.mailly@college-de-france.fr</email>
+            <properties><id>phm</id></properties>
+        </contributor>
+    </contributors>
+    
+    <mailingLists>
+        <mailingList>
+            <name>None</name>
+        </mailingList>
+    </mailingLists>
+    
+    <scm>
+        <url>https://github.com/orion-cirb/DAPI_PML</url> 
+    </scm>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/orion-cirb/DAPI_PML</url>
+    </issueManagement>
+    <ciManagement>
+        <system>None</system>
+    </ciManagement>
+    
+    <properties>
+        <imagej.app.directory>/opt/Fiji.app/</imagej.app.directory>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <license.licenseName>None</license.licenseName>
+        <license.copyrightOwners>None</license.copyrightOwners>
+    </properties>
+    
+    <repositories>
+        <repository>
+            <id>scijava.public</id>
+            <url>https://maven.scijava.org/content/groups/public</url>
+        </repository>
+    </repositories>
+    
+    <dependencies>
+        <!-- 3D Image Suite -->
+        <dependency>
+            <groupId>org.framagit.mcib3d</groupId>
+            <artifactId>mcib3d-core</artifactId>
+            <version>4.1.7</version>		
+        </dependency>
+        <!-- CLIJ -->
+        <dependency>
+            <groupId>net.haesleinhuepf</groupId>
+            <artifactId>clij2_</artifactId>
+            <version>2.5.3.1</version>
+        </dependency>
+    </dependencies>
+            
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copytoplugins</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="${imagej.app.directory}/plugins/CIRB" file="target/${project.build.finalName}.jar"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
