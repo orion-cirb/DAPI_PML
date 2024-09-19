@@ -21,7 +21,7 @@
 * Compute background noise as the median intensity of pixels outside nuclei
 * For each nucleus, provide:
   * PML foci number, area and background-corrected intensity
-  * PML diffuse signal (aka outside foci) background-corrected intensityDetect nuclei with Cellpose
+  * PML diffuse signal (aka outside foci) background-corrected intensity
 
 ### Dependencies
 
