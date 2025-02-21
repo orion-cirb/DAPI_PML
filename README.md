@@ -8,7 +8,7 @@
 
 ### Images description
 
-3D images taken with a x63 objective.
+2D images taken with a x63 objective.
 
 2 channels:
   1. *DAPI:* DAPI nuclei
